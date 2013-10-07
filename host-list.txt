@@ -1,0 +1,6 @@
+0-105-113-92.pool.ukrtel.net	92.113.105.0
+0-125.channel.facebook.com	66.220.151.76
+0-131.channel.facebook.com	66.220.151.77
+0-137.channel.facebook.com	66.220.151.78
+0-143.channel.facebook.com	66.220.151.79
+0-149.channel.facebook.com	66.220.151.80
