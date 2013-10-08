@@ -120,19 +120,19 @@ public class BPlusTreeIntToString60 {
 		InternalNode sibling = new InternalNode();
 		int mid = (node.getSize()/2)+1;
 		int j = 1;
-		for(int i = mid+1;i<=((InternalNode)node).size;i++){
+		int loopTo = ((InternalNode)node).size;
+		int promoteKey = ((InternalNode)node).keys[mid];
+		for(int i = mid+1;i<=loopTo;i++){
 			sibling.keys[j] = node.getKey(i);
 			sibling.size++;
 			j++;
 		}
 		j=0;
-		for(int i = mid; i<=((InternalNode)node).size;i++){
+		for(int i = mid; i<=loopTo;i++){
 			sibling.children[j] = node.getChild(i);
 			j++;
+			node.remove(i);
 		}
-		((InternalNode)node).size = ((InternalNode)node).size - sibling.size;
-		int promoteKey = ((InternalNode)node).keys[mid];
-		node.remove(mid);
 		return new InfoNode(promoteKey, sibling);
 	}
 
@@ -140,13 +140,21 @@ public class BPlusTreeIntToString60 {
 		node.add(key, value);
 		LeafNode sibling = new LeafNode();
 		int mid = (node.getSize()+1)/2;
-		for(int i = mid; i < node.getSize()-1;i++){
+		int loopTo = node.getSize();
+		for(int i = mid; i < loopTo;i++){
 			sibling.add(node.getKey(i), node.getValue(i));
+		}
+		for(int i = mid; i < loopTo;i++){
 			node.remove(i);
 		}
 		sibling.nextLeaf = ((LeafNode) node).nextLeaf;
 		((LeafNode) node).nextLeaf = sibling;
 		return new InfoNode(sibling.keys[0], sibling);
+	}
+	
+	@Override
+	public String toString(){
+		return root.toString();
 	}
 
 }

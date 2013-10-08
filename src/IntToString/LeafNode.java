@@ -98,6 +98,19 @@ public class LeafNode implements Node {
 		// should never happen
 		return null;
 	}
+	
+	@Override
+	public String toString(){
+		String toReturn = "LEAF:";
+		for(int i = 0; i<this.size;i++){
+			toReturn += this.keys[i];
+			toReturn+= "->";
+			toReturn += this.values[i];
+			toReturn+= ",  ";
+			
+		}
+		return toReturn;
+	}
 
 
 }

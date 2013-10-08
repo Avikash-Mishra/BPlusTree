@@ -81,5 +81,18 @@ public class InternalNode implements Node {
 		this.size--;
 
 	}
+	
+	@Override
+	public String toString(){
+		String toReturn = "INTERNAL:";
+		for(int i = 0; i<=this.size;i++){
+			toReturn += this.keys[i];
+			toReturn+= "->";
+			toReturn += this.children[i];
+			toReturn+= ",";
+			
+		}
+		return toReturn;
+	}
 
 }

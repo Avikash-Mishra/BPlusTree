@@ -35,8 +35,9 @@ public class DNSDB {
 		String line = data.readLine();
 		if (line==null) {break;}
 		String[] pair = line.split("\t");
-		String host = pair[0];
-		int IP = stringToIP(pair[1]);
+		int IP = stringToIP(pair[0]);
+		String host = pair[1];
+		
 		hostNames.put(IP, host);
 		ipAddresses.put(host, IP);
 	    }
@@ -112,8 +113,7 @@ public class DNSDB {
      */
     public void iterateAll(){
 	//YOUR CODE HERE
-	//You will need to add methods to the BPlusTree... classes.
-	JOptionPane.showMessageDialog(null, "You must implement iterateAll()");
+    	System.out.println(hostNames.toString());
     }
 
 
@@ -131,8 +131,8 @@ public class DNSDB {
 		String[] line = scan.nextLine().split("\t");
 		if(line.length != 2)
 		    continue;
-		String host = line[0].trim(); 
-		int ip = stringToIP(line[1].trim());
+		int ip = stringToIP(line[0].trim()); 
+		String host = line[1].trim(); 
 		if(!testPair(ip, host)){
 		    System.out.println("Missing: " + IPToString(ip) + " -> " + host);
 		}
