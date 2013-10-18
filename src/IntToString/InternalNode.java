@@ -1,5 +1,8 @@
 package IntToString;
 
+import javax.swing.plaf.basic.BasicTreeUI;
+
+import core.BPlusTreeIntToString60;
 import core.Node;
 
 public class InternalNode implements Node {
@@ -35,7 +38,7 @@ public class InternalNode implements Node {
 	public void add(int key, Node child) {
 		if (size == 0) {
 			this.keys[size + 1] = key;
-			this.children[size] = child;
+			this.children[size+1] = child;
 			this.size++;
 			return;
 		}
@@ -48,7 +51,7 @@ public class InternalNode implements Node {
 		else{
 			for(int i = 1; i <=this.size;i++){
 				if(key<this.keys[i]){
-					for(int j = size; j>i;j--){
+					for(int j = size+1; j>i;j--){
 						this.keys[j] = this.keys[j-1];
 						this.children[j] = this.children[j-1];
 					}

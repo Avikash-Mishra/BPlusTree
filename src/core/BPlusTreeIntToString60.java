@@ -16,7 +16,7 @@ import IntToString.LeafNode;
 public class BPlusTreeIntToString60 {
 
 	private Node root;
-	public static final int maxDegree = 8;
+	public static final int maxDegree = 2;
 
 	/**
 	 * Returns the String associated with the given key, or null if the key is
