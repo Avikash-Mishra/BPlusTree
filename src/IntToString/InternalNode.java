@@ -3,12 +3,11 @@ package IntToString;
 import javax.swing.plaf.basic.BasicTreeUI;
 
 import core.BPlusTreeIntToString60;
-import core.Node;
 
 public class InternalNode implements Node {
-	public int keys[] = new int[10];
+	public int keys[] = new int[BPlusTreeIntToString60.maxDegree + 3];
 	public int size;
-	public Node children[] = new Node[10];
+	public Node children[] = new Node[BPlusTreeIntToString60.maxDegree + 3];
 
 	public InternalNode(int key, Node child) {
 		this.size = 0;
@@ -96,6 +95,12 @@ public class InternalNode implements Node {
 			
 		}
 		return toReturn;
+	}
+
+	@Override
+	public void add(int key, int value) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

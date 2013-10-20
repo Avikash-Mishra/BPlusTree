@@ -1,11 +1,8 @@
 package core;
-import IntToString.*;
-
-import java.rmi.dgc.Lease;
-
 import IntToString.InfoNode;
 import IntToString.InternalNode;
 import IntToString.LeafNode;
+import IntToString.Node;
 
 
 /**
@@ -16,7 +13,7 @@ import IntToString.LeafNode;
 public class BPlusTreeIntToString60 {
 
 	private Node root;
-	public static final int maxDegree = 2;
+	public static final int maxDegree = 32;
 
 	/**
 	 * Returns the String associated with the given key, or null if the key is
@@ -154,7 +151,14 @@ public class BPlusTreeIntToString60 {
 	
 	@Override
 	public String toString(){
-		return root.toString();
+		Node toReturnString = root;
+		while(!(toReturnString instanceof LeafNode)){
+			toReturnString = toReturnString.getChild(0);
+		}
+		if(toReturnString instanceof LeafNode){
+			return toReturnString.toString();
+		}
+		return "FAIL";
 	}
 
 }

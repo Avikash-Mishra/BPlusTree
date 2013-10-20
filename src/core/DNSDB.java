@@ -1,10 +1,12 @@
 package core;
+
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
+
 import javax.swing.JOptionPane;
 
 
@@ -35,9 +37,8 @@ public class DNSDB {
 		String line = data.readLine();
 		if (line==null) {break;}
 		String[] pair = line.split("\t");
-		int IP = stringToIP(pair[0]);
-		String host = pair[1];
-		
+		String host = pair[0];
+		int IP = stringToIP(pair[1]);
 		hostNames.put(IP, host);
 		ipAddresses.put(host, IP);
 	    }
@@ -112,8 +113,7 @@ public class DNSDB {
      * Prints (to System.out) all the pairs in the HostNames index.
      */
     public void iterateAll(){
-	//YOUR CODE HERE
-    	System.out.println(hostNames.toString());
+    System.out.println(hostNames.toString());	
     }
 
 
@@ -131,8 +131,8 @@ public class DNSDB {
 		String[] line = scan.nextLine().split("\t");
 		if(line.length != 2)
 		    continue;
-		int ip = stringToIP(line[0].trim()); 
-		String host = line[1].trim(); 
+		int ip = stringToIP(line[0].trim());
+		String host = line[1].trim();
 		if(!testPair(ip, host)){
 		    System.out.println("Missing: " + IPToString(ip) + " -> " + host);
 		}
@@ -174,7 +174,7 @@ public class DNSDB {
     public static String IPToString(int ip){
 	StringBuilder sb = new StringBuilder();
 	for(int i=3; i>=0; i--){
-	    sb.append((ip & (0xFF << (i*8))) >> (i*8));
+	    sb.append((ip & (0xFF << (i*8))) >>> (i*8));
 	    if(i > 0)
 		sb.append('.');
 	}

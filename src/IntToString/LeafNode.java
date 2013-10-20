@@ -1,10 +1,11 @@
 package IntToString;
 
-import core.Node;
+import core.BPlusTreeIntToString60;
+import core.DNSDB;
 
 public class LeafNode implements Node {
-	public int keys[] = new int[10];
-	public String values[] = new String[10];
+	public int keys[] = new int[BPlusTreeIntToString60.maxDegree + 3];
+	public String values[] = new String[BPlusTreeIntToString60.maxDegree + 3];
 	public int size;
 	public LeafNode nextLeaf;
 
@@ -101,15 +102,24 @@ public class LeafNode implements Node {
 	
 	@Override
 	public String toString(){
-		String toReturn = "LEAF:";
+		String toReturn = "";
 		for(int i = 0; i<this.size;i++){
-			toReturn += this.keys[i];
-			toReturn+= "->";
+			toReturn += DNSDB.IPToString(this.keys[i]);
+			toReturn+= " -> ";
 			toReturn += this.values[i];
-			toReturn+= ",  ";
+			toReturn+= "\n";
 			
 		}
+		if(this.nextLeaf != null){
+			toReturn+= this.nextLeaf.toString();
+		}
 		return toReturn;
+	}
+
+	@Override
+	public void add(int key, int value) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
